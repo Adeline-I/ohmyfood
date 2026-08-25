@@ -1,8 +1,7 @@
+import RestaurantCard from "@/components/RestaurantCard/RestaurantCard";
+import Steps from "@/components/Steps/Steps";
 import Image from "next/image";
 import styles from "./page.module.css";
-import Steps from "@/components/Steps/Steps";
-
-
 
 export default function Home() {
   return (
@@ -15,7 +14,9 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Réservez le menu qui vous convient</h1>
-          <p>Découvrez des restaurants d'exception, sélectionnés par nos soins.</p>
+          <p>
+            Découvrez des restaurants d'exception, sélectionnés par nos soins.
+          </p>
           <button className={styles.cta}>Explorer nos restaurants</button>
         </div>
       </section>
@@ -26,7 +27,7 @@ export default function Home() {
         <div className={styles.restaurantsContent}>
           <h2>Restaurants</h2>
           <div className={styles.restaurantGrid}>
-            
+            <RestaurantCard />
           </div>
         </div>
       </section>

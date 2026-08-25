@@ -1,12 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import { Shrikhand } from "next/font/google";
-import "./globals.css";
-import "./styles.css";
-import Link from "next/link";
-import styles from "./layout.module.css";
 import Header from "@/components/Header/Header";
+import {
+  faHandshakeAngle,
+  faUtensils,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUtensils, faHandshakeAngle } from "@fortawesome/free-solid-svg-icons";
+import { Geist, Geist_Mono, Shrikhand } from "next/font/google";
+import Link from "next/link";
+import "./globals.css";
+import styles from "./layout.module.css";
+import "./styles.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,9 +21,9 @@ const geistMono = Geist_Mono({
 });
 
 const shrikhand = Shrikhand({
-  weight: '400',
-  variable: '--font-shrikhand',
-  subsets: ['latin'],
+  weight: "400",
+  variable: "--font-shrikhand",
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -32,24 +34,31 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${shrikhand.variable}`}>
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} ${shrikhand.variable}`}
+      >
         <div className={styles.page}>
           <Header />
 
           <main className={styles.mainContent}>
-            <div className={styles.contentWrapper}>
-              {children}
-            </div>
+            <div className={styles.contentWrapper}>{children}</div>
           </main>
 
           <footer className={styles.footer}>
             <nav>
               <a href="#" className={styles.footerLink}>
-                <FontAwesomeIcon icon={faUtensils} className={styles.footerIcon} />
+                <FontAwesomeIcon
+                  icon={faUtensils}
+                  className={styles.footerIcon}
+                />
                 Proposer un restaurant
               </a>
               <a href="#" className={styles.footerLink}>
-                <FontAwesomeIcon icon={faHandshakeAngle} className={styles.footerIcon} />
+                <FontAwesomeIcon
+                  icon={faHandshakeAngle}
+                  className={styles.footerIcon}
+                />
                 Devenir partenaire
               </a>
               <a href="#">Mentions légales</a>

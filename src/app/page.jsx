@@ -1,5 +1,6 @@
 import RestaurantCard from "@/components/RestaurantCard/RestaurantCard";
 import Steps from "@/components/Steps/Steps";
+import { restaurants } from "@/data/restaurants.json";
 import Image from "next/image";
 import styles from "./page.module.css";
 
@@ -27,7 +28,9 @@ export default function Home() {
         <div className={styles.restaurantsContent}>
           <h2>Restaurants</h2>
           <div className={styles.restaurantGrid}>
-            <RestaurantCard />
+            {restaurants.map((restaurant) => (
+              <RestaurantCard key={restaurant.id} {...restaurant} />
+            ))}
           </div>
         </div>
       </section>

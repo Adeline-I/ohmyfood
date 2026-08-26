@@ -1,21 +1,17 @@
 import Image from "next/image";
 import styles from "./RestaurantCard.module.css";
 
-export default function RestaurantCard() {
+export default function RestaurantCard({ name, location, image, isNew }) {
   return (
     <div className={styles.card}>
       <div className={styles.image}>
-        <Image
-          src="/images/restaurants/jay-wennington-N_Y88TWmGwA-unsplash.jpg"
-          alt="La palette du goût"
-          fill
-        />
-        <span className={styles.badge}>Nouveau</span>
+        <Image src={image} alt={name} fill />
+        {isNew && <span className={styles.badge}>Nouveau</span>}
       </div>
 
       <div className={styles.text}>
-        <h3 className={styles.title}>La palette du goût</h3>
-        <p className={styles.location}>Ménilmontant</p>
+        <h3 className={styles.title}>{name}</h3>
+        <p className={styles.location}>{location}</p>
         <button className={styles.like} aria-label="Ajouter aux favoris">
           <svg
             width="22"

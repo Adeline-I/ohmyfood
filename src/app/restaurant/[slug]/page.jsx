@@ -2,10 +2,15 @@ import MenuItem from "@/components/MenuItem/MenuItem";
 import RestaurantHeader from "@/components/RestaurantHeader/RestaurantHeader";
 import { restaurants } from "@/data/restaurants.json";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export default async function RestaurantPage({ params }) {
   const { slug } = await params;
   const restaurant = restaurants.find((r) => r.slug === slug);
+
+  if (!restaurant) {
+    notFound();
+  }
 
   const menuSections = [
     { title: "Entrées", items: restaurant.menu["entrées"] },

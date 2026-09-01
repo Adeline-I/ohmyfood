@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import styles from "./RestaurantCard.module.css";
 
-export default function RestaurantCard({ name, location, image, isNew }) {
+export default function RestaurantCard({ name, location, image, isNew, slug }) {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <div className={styles.card}>
+    <Link href={`/restaurant/${slug}`} className={styles.card}>
       <div className={styles.image}>
         <Image src={image} alt={name} fill />
         {isNew && <span className={styles.badge}>Nouveau</span>}
@@ -19,7 +20,11 @@ export default function RestaurantCard({ name, location, image, isNew }) {
         <p className={styles.location}>{location}</p>
         <button
           className={`${styles.like} ${isLiked ? styles.liked : ""}`}
-          onClick={() => setIsLiked((prev) => !prev)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsLiked((prev) => !prev);
+          }}
           aria-label={isLiked ? "Retirer des favoris" : "Ajouter aux favoris"}
         >
           <svg
@@ -39,6 +44,6 @@ export default function RestaurantCard({ name, location, image, isNew }) {
           </svg>
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
